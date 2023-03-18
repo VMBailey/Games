@@ -21,29 +21,29 @@ class Valentine (object):
     
 ## Enemy
 class Beast (object):
-    name = "Nemesis"
-    health = 200
+    name = "Tyrant"
+    health = 40
     strength = 15
     defense = 20
     loot = random.randint(0,2)
 
 class Zombie (object):
-    name = "Tattered"
-    health = 100
+    name = "Zombie"
+    health = 30
     strength = 15
     defense = 20
     loot = random.randint(0,2)
 
 class Dog (object):
-    name = "Zombie Dog"
-    health = 80
+    name = "Cerberus"
+    health = 20
     strength = 15
     defense = 20
     loot = random.randint(0,2)
 
 class Licker (object):
     name = "Licker"
-    health = 100
+    health = 35
     strength = 15
     defense = 20
     loot = random.randint(0,2)
@@ -102,9 +102,61 @@ def loot():
     return lootDrop
 
 ##############################################################################
+# Battle Function
+##############################################################################
+def battlestate():
+    enemy = enemyselect(Beast,Zombie,Dog,Licker)
+    print("A", enemy.name, "lept out at you!")
+    time.sleep(1.4)
+    print("What are you going to do....")
+    while enemy.health > 0:
+        choice = input("1. Shoot\n2. Swing Combat Knife\n3. Run\n")
+
+        if choice == "1":
+            print ("You raise your trusty handgun and fire at the", enemy.name)
+            hitchance = random.randint(0,10)
+            if hitchance > 3:
+                enemy.health = enemy.health - character.strength
+                print ("Nice! A solid hit! The", enemy.name, "is now", enemy.health)
+
+                if enemy.health > 0:
+                    character.health = character.health - (enemy.strength / character.defense)
+                    print ("The", enemy.name, "strikes at you...")
+                    time.sleep(1.4)
+                    print ("Your health dropped to", character.health)
+                
+                else:
+                    if enemy.name == "Tyrant":
+                        enemy.health = 200
+
+                    elif enemy.name == "Zombie":
+                        enemy.health = 100
+
+                    elif enemy.name == "Cerberus":
+                        enemy.health = 80
+                    
+                    elif enemy.name == "Licker":
+                        enemy.health = 100
+
+                    print ("Always aim for the head! The", enemy.name, "is down!")
+                    time.sleep(1.4)
+                    print ("Looks like it dropped something....")
+                    time.sleep(1.4)
+                    lootDrop = loot()
+                    print ("You picked up", lootDrop, "from the corpse.")
+                    break
+
+            else:
+                print ("Damn you missed....")
+                time.sleep(1.4)
+                print ("The", enemy.name, "hits you for full damage.")
+                character.health = character.health - enemy.strength
+                print("Your health is at", character.health, "now.")
+##############################################################################
 # Main
 ##############################################################################
-heroselect()
+character = heroselect()
+battlestate()
 ##############################################################################
 # End
 ##############################################################################
