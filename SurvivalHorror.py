@@ -23,7 +23,7 @@ class Valentine (object):
 class Beast (object):
     name = "Tyrant"
     health = 40
-    strength = 15
+    strength = 35
     defense = 20
     loot = random.randint(0,2)
 
@@ -37,14 +37,14 @@ class Zombie (object):
 class Dog (object):
     name = "Cerberus"
     health = 20
-    strength = 15
+    strength = 10
     defense = 20
     loot = random.randint(0,2)
 
 class Licker (object):
     name = "Licker"
     health = 35
-    strength = 15
+    strength = 20
     defense = 20
     loot = random.randint(0,2)
 
@@ -57,7 +57,7 @@ def heroselect():
 
     if selection == "1":
         character = Redfield
-        print("Welcome to Arkham Manor, Mr. Redfield. Here are your stats.")
+        print("Welcome to the Spencer Mansion, Mr. Redfield. Here are your stats.")
         print("Health - ", character.health)
         print("Strength - ", character.strength)
         print("Defense - ", character.defense)
