@@ -72,7 +72,7 @@ def game_over(character, player_score):
 ##############################################################################
 # Character Select Function
 ##############################################################################
-def heroselect():
+def hero_select():
     print("Select Your Hero")
     selection = input("1. Redfield \n2. Valentine \n\n")
 
@@ -102,16 +102,16 @@ def heroselect():
     else:
         print("Please enter either 1 or 2 to select a character.")
         time.sleep(1.4)
-        heroselect()
+        hero_select()
 
 
 ##############################################################################
 # Enemy Select Function
 ##############################################################################
-def enemyselect(Beast, Zombie, Dog, Licker):
-    enemyList = [Beast, Zombie, Dog, Licker]
+def enemy_select(Beast, Zombie, Dog, Licker):
+    enemy_list = [Beast, Zombie, Dog, Licker]
     spawn = random.randint(0, 2)
-    enemy = enemyList[spawn]
+    enemy = enemy_list[spawn]
     return enemy
 
 
@@ -120,16 +120,16 @@ def enemyselect(Beast, Zombie, Dog, Licker):
 ##############################################################################
 def loot():
     loot = ["Handgun Bullets", "Combat Knife", "First Aid Spray"]
-    lootChance = random.randint(0, 2)
-    lootDrop = loot[lootChance]
-    return lootDrop
+    loot_chance = random.randint(0, 2)
+    loot_drop = loot[loot_chance]
+    return loot_drop
 
 
 ##############################################################################
 # Battle Function
 ##############################################################################
-def battlestate(player_score):
-    enemy = enemyselect(Beast, Zombie, Dog, Licker)
+def battle_state(player_score):
+    enemy = enemy_select(Beast, Zombie, Dog, Licker)
     print("A", enemy.name, "leapt out at you!")
     time.sleep(1.4)
     print("What are you going to do....")
@@ -139,8 +139,8 @@ def battlestate(player_score):
         # Option 1
         if choice == "1":
             print("You raise your trusty handgun and fire at the", enemy.name)
-            hitchance = random.randint(0, 10)
-            if hitchance > 3:
+            hit_chance = random.randint(0, 10)
+            if hit_chance > 3:
                 enemy.health = enemy.health - character.strength
                 print("Nice! A solid hit! The", enemy.name, "is now", enemy.health)
 
@@ -177,8 +177,8 @@ def battlestate(player_score):
                     time.sleep(1.4)
                     print("Looks like it dropped something....")
                     time.sleep(1.4)
-                    lootDrop = loot()
-                    print("You picked up", lootDrop, "from the corpse.")
+                    loot_drop = loot()
+                    print("You picked up", loot_drop, "from the corpse.")
                     break
 
             else:
@@ -193,8 +193,8 @@ def battlestate(player_score):
         # Option 2
         if choice == "2":
             print("You unsheathe your combat knife and take a forceful swing at the", enemy.name)
-            hitchance = random.randint(0, 10)
-            if hitchance > 3:
+            hit_chance = random.randint(0, 10)
+            if hit_chance > 3:
                 enemy.health = enemy.health - character.resolve
                 print("You cut a deep gash across the", enemy.name, "'s face. It's health is now", enemy.health)
 
@@ -231,8 +231,8 @@ def battlestate(player_score):
                     time.sleep(1.4)
                     print("Looks like it dropped something....")
                     time.sleep(1.4)
-                    lootDrop = loot()
-                    print("You picked up", lootDrop, "from the corpse.")
+                    loot_drop = loot()
+                    print("You picked up", loot_drop, "from the corpse.")
                     break
 
             else:
@@ -270,9 +270,9 @@ def battlestate(player_score):
 # Main
 ##############################################################################
 player_score = 0
-character = heroselect()
-player_score = battlestate(player_score)
-battlestate(player_score)
+character = hero_select()
+player_score = battle_state(player_score)
+battle_state(player_score)
 print(player_score)
 ##############################################################################
 # End
