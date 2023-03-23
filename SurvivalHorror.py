@@ -56,11 +56,25 @@ class Licker(object):
 
 
 ##############################################################################
+# Game Over Function
+##############################################################################
+def game_over(character, player_score):
+    if character.health < 1:
+        print("YOU ARE DEAD")
+        time.sleep(2.4)
+        print("You earned ", player_score,". Not bad.")
+        time.sleep(2.4)
+        print("Thank you for playing.")
+        time.sleep(2.4)
+        exit()
+
+
+##############################################################################
 # Character Select Function
 ##############################################################################
 def heroselect():
     print("Select Your Hero")
-    selection = input("1. Redfield \n2. Valentine \n")
+    selection = input("1. Redfield \n2. Valentine \n\n")
 
     if selection == "1":
         character = Redfield
@@ -114,13 +128,13 @@ def loot():
 ##############################################################################
 # Battle Function
 ##############################################################################
-def battlestate():
+def battlestate(player_score):
     enemy = enemyselect(Beast, Zombie, Dog, Licker)
-    print("A", enemy.name, "lept out at you!")
+    print("A", enemy.name, "leapt out at you!")
     time.sleep(1.4)
     print("What are you going to do....")
     while enemy.health > 0:
-        choice = input("1. Shoot\n2. Swing Combat Knife\n3. Run\n")
+        choice = input("1. Shoot\n2. Swing Combat Knife\n3. Run\n\n")
 
         # Option 1
         if choice == "1":
@@ -135,19 +149,29 @@ def battlestate():
                     print("The", enemy.name, "strikes at you...")
                     time.sleep(1.4)
                     print("Your health dropped to", character.health)
+                    time.sleep(2.4)
+                    game_over(character, player_score)
 
                 else:
                     if enemy.name == "Tyrant":
                         enemy.health = 200
+                        player_score = player_score + 20
+                        return player_score
 
                     elif enemy.name == "Zombie":
                         enemy.health = 100
+                        player_score = player_score + 15
+                        return player_score
 
                     elif enemy.name == "Cerberus":
                         enemy.health = 80
+                        player_score = player_score + 10
+                        return player_score
 
                     elif enemy.name == "Licker":
                         enemy.health = 100
+                        player_score = player_score + 10
+                        return player_score
 
                     print("Always aim for the head! The", enemy.name, "is down!")
                     time.sleep(1.4)
@@ -163,6 +187,8 @@ def battlestate():
                 print("The", enemy.name, "hits you for full damage.")
                 character.health = character.health - enemy.strength
                 print("Your health is at", character.health, "now.")
+                time.sleep(2.4)
+                game_over(character, player_score)
 
         # Option 2
         if choice == "2":
@@ -177,19 +203,29 @@ def battlestate():
                     print("The", enemy.name, "strikes at you...")
                     time.sleep(1.4)
                     print("Your health dropped to", character.health)
+                    time.sleep(2.4)
+                    game_over(character, player_score)
 
                 else:
                     if enemy.name == "Tyrant":
                         enemy.health = 200
+                        player_score = player_score + 20
+                        return player_score
 
                     elif enemy.name == "Zombie":
                         enemy.health = 100
+                        player_score = player_score + 15
+                        return player_score
 
                     elif enemy.name == "Cerberus":
                         enemy.health = 80
+                        player_score = player_score + 10
+                        return player_score
 
                     elif enemy.name == "Licker":
                         enemy.health = 100
+                        player_score = player_score + 10
+                        return player_score
 
                     print("A messy but effective beheading! The", enemy.name, "is down!")
                     time.sleep(1.4)
@@ -205,6 +241,8 @@ def battlestate():
                 print("The", enemy.name, "hits you for full damage.")
                 character.health = character.health - enemy.strength
                 print("Your health is at", character.health, "now.")
+                time.sleep(2.4)
+                game_over(character, player_score)
 
         # Option 3
         if choice == "3":
@@ -220,6 +258,8 @@ def battlestate():
                 character.health = character.health - enemy.strength
                 time.sleep(1.6)
                 print("You kick the", enemy.name, "off of you and steady yourself.")
+                time.sleep(2.4)
+                game_over(character, player_score)
 
         # Any other option
         else:
@@ -229,8 +269,11 @@ def battlestate():
 ##############################################################################
 # Main
 ##############################################################################
+player_score = 0
 character = heroselect()
-battlestate()
+player_score = battlestate(player_score)
+battlestate(player_score)
+print(player_score)
 ##############################################################################
 # End
 ##############################################################################
