@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+
+# Script Name:      Survival Horror
+# Author:           Vincent Bailey
+# Last Rev:         03/23/2023
+# Purpose:          This is a text-based game based on a survival horror
+#                   classic.
+
 ##############################################################################
 # Libraries
 ##############################################################################
