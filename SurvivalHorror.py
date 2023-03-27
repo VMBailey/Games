@@ -2,7 +2,7 @@
 
 # Script Name:      Survival Horror
 # Author:           Vincent Bailey
-# Last Rev:         03/26/2023
+# Last Rev:         03/27/2023
 # Purpose:          This is a text-based game based on a survival horror
 #                   classic.
 
@@ -157,6 +157,17 @@ def loot():
     loot_drop = loot[loot_chance]
     return loot_drop
 
+##############################################################################
+# Loot Effect Function
+##############################################################################
+def loot_effect(loot_drop, character):
+    if loot_drop == "First Aid Spray":
+        character.health = character.health + 20
+        print("You use the First Aid Spray and heal by 20 points.")
+        time.sleep(1.8)
+        print("Your health is now", character.health)
+        return character
+    
 
 ##############################################################################
 # Battle Function
