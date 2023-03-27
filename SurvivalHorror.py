@@ -2,7 +2,7 @@
 
 # Script Name:      Survival Horror
 # Author:           Vincent Bailey
-# Last Rev:         03/23/2023
+# Last Rev:         03/26/2023
 # Purpose:          This is a text-based game based on a survival horror
 #                   classic.
 
@@ -17,7 +17,7 @@ import pygame, random, time, sys
 ##############################################################################
 # STARS
 class Redfield(object):
-    health = 150
+    health = 15
     strength = 15
     defense = 10
     resolve = 8
@@ -70,11 +70,34 @@ def game_over(character, player_score):
     if character.health < 1:
         print("YOU ARE DEAD")
         time.sleep(2.4)
-        print("You earned ", player_score,". Not bad.")
+        print("You earned ", player_score, ". Not bad.")
         time.sleep(2.4)
         print("Thank you for playing.")
         time.sleep(2.4)
+        # exit()
+        name = input("Enter your name....")
+        write_score(player_score, name)
+
+        file = open("player_score.txt", "r")
+
+        for line in file:
+            x_line = line.split(",")
+            print(x_line[0], x_line[1])
+
         exit()
+
+
+##############################################################################
+# Write Score Function
+##############################################################################
+def write_score(player_score, name):
+    file = open("player_score.txt", "a")
+    file.write(str(name))
+    file.write(",")
+    file.write(str(player_score))
+    file.write(",")
+    file.write("\n")
+    file.close()
 
 
 ##############################################################################
