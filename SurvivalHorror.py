@@ -98,7 +98,9 @@ def write_score(player_score, name):
     file.write(",")
     file.write("\n")
     file.close()
-
+# The function above will essentially write the player's score to a text file,
+# save it to that text file, and update that text file every time the player
+# finishes the game.
 
 ##############################################################################
 # Character Select Function
