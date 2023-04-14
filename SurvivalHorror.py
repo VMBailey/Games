@@ -17,7 +17,7 @@ import pygame, random, time, sys
 ##############################################################################
 # STARS
 class Redfield(object):
-    health = 15
+    health = 150
     strength = 15
     defense = 10
     resolve = 8
