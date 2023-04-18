@@ -2,8 +2,8 @@
 
 # Script Name:      Survival Horror
 # Author:           Vincent Bailey
-# Last Rev:         03/27/2023
-# Purpose:          This is a text-based game based on a survival horror
+# Last Rev:         04/17/2023
+# Purpose:          This is a text adventure game based on a survival horror
 #                   classic.
 
 ##############################################################################
@@ -164,7 +164,7 @@ def loot_effect(loot_drop, character):
     if loot_drop == "First Aid Spray":
         character.health = character.health + 20
         print("You use the First Aid Spray and heal by 20 points.")
-        time.sleep(1.8)
+        time.sleep(2.4)
         print("Your health is now", character.health)
         return character
     
@@ -183,15 +183,17 @@ def battle_state(player_score):
         # Option 1
         if choice == "1":
             print("You raise your trusty handgun and fire at the", enemy.name)
+            time.sleep(2.4)
             hit_chance = random.randint(0, 10)
             if hit_chance > 3:
                 enemy.health = enemy.health - character.strength
                 print("Nice! A solid hit! The", enemy.name, "is now", enemy.health)
+                time.sleep(2.4)
 
                 if enemy.health > 0:
                     character.health = character.health - (enemy.strength / character.defense)
                     print("The", enemy.name, "strikes at you...")
-                    time.sleep(1.4)
+                    time.sleep(2.4)
                     print("Your health dropped to", character.health)
                     time.sleep(2.4)
                     game_over(character, player_score)
@@ -218,16 +220,16 @@ def battle_state(player_score):
                         return player_score
 
                     print("Always aim for the head! The", enemy.name, "is down!")
-                    time.sleep(1.4)
+                    time.sleep(2.4)
                     print("Looks like it dropped something....")
-                    time.sleep(1.4)
+                    time.sleep(2.4)
                     loot_drop = loot()
                     print("You picked up", loot_drop, "from the corpse.")
                     break
 
             else:
                 print("Damn you missed....")
-                time.sleep(1.4)
+                time.sleep(2.4)
                 print("The", enemy.name, "hits you for full damage.")
                 character.health = character.health - enemy.strength
                 print("Your health is at", character.health, "now.")
@@ -237,15 +239,17 @@ def battle_state(player_score):
         # Option 2
         if choice == "2":
             print("You unsheathe your combat knife and take a forceful swing at the", enemy.name)
+            time.sleep(2.4)
             hit_chance = random.randint(0, 10)
             if hit_chance > 3:
                 enemy.health = enemy.health - character.resolve
                 print("You cut a deep gash across the", enemy.name, "'s face. It's health is now", enemy.health)
+                time.sleep(2.4)
 
                 if enemy.health > 0:
                     character.health = character.health - (enemy.strength / character.defense)
                     print("The", enemy.name, "strikes at you...")
-                    time.sleep(1.4)
+                    time.sleep(2.4)
                     print("Your health dropped to", character.health)
                     time.sleep(2.4)
                     game_over(character, player_score)
@@ -272,16 +276,16 @@ def battle_state(player_score):
                         return player_score
 
                     print("A messy but effective beheading! The", enemy.name, "is down!")
-                    time.sleep(1.4)
+                    time.sleep(2.4)
                     print("Looks like it dropped something....")
-                    time.sleep(1.4)
+                    time.sleep(2.4)
                     loot_drop = loot()
                     print("You picked up", loot_drop, "from the corpse.")
                     break
 
             else:
                 print("Damn you missed....")
-                time.sleep(1.4)
+                time.sleep(2.4)
                 print("The", enemy.name, "hits you for full damage.")
                 character.health = character.health - enemy.strength
                 print("Your health is at", character.health, "now.")
@@ -291,16 +295,17 @@ def battle_state(player_score):
         # Option 3
         if choice == "3":
             print("You try to run....")
+            time.sleep(2.4)
             run_chance = random.randint(0, 10)
             if run_chance > 4:
                 print("You got away unscathed!")
                 break
             else:
                 print("You try to run but you slip and fall!")
-                time.sleep(1.6)
+                time.sleep(2.4)
                 print("You back away quickly but the", enemy.name, "takes a bite out of your chest.")
                 character.health = character.health - enemy.strength
-                time.sleep(1.6)
+                time.sleep(2.4)
                 print("You kick the", enemy.name, "off of you and steady yourself.")
                 time.sleep(2.4)
                 game_over(character, player_score)
