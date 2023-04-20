@@ -2,7 +2,7 @@
 
 # Script Name:      Survival Horror
 # Author:           Vincent Bailey
-# Last Rev:         04/17/2023
+# Last Rev:         04/19/2023
 # Purpose:          This is a text adventure game based on a survival horror
 #                   classic.
 
@@ -187,7 +187,7 @@ def battle_state(player_score):
             hit_chance = random.randint(0, 10)
             if hit_chance > 3:
                 enemy.health = enemy.health - character.strength
-                print("Nice! A solid hit! The", enemy.name, "is now", enemy.health)
+                print("Nice! A solid hit! The", enemy.name, "'s health is now", enemy.health)
                 time.sleep(2.4)
 
                 if enemy.health > 0:
